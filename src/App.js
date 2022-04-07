@@ -1,11 +1,11 @@
-
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
+import Home from './Home.js'
 
 function App() {
   return (
-    <div>
-    <h1> Ciao </h1>
-    </div>
+    <>
+   <Home />
+   </>
   );
 }
 
