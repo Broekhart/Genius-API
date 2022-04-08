@@ -1,28 +1,23 @@
 import {useState} from 'react'
 import useFetch from './useFetch.js'
+import Lyrics from './Lyrics.js'
 
-const Principal = ({researchArtist, imgArtist, chosenArtist}) => {
-
-  const [secondSearch, setSecondSearch] = useState("")
+const Principal = ({researchArtist, imgArtist, chosenArtist, socials}) => {
 
   return (
     <>
-    {<div className="block1">
-    <div className="int1">
-        <form className="form2">
-      <input type="text" required value={secondSearch} onChange={(e) => setSecondSearch(e.target.value)}  />
-        <i onClick={researchArtist} class="fas fa-search"></i>
-        </form>
+    {<main className="block1">
+    <section className="int1">
         <h1> {chosenArtist} </h1>
         <div className="socials">
-          <i class="fab fa-instagram"></i>
-          <i className="fab fa-facebook"></i>
+          {socials && <a target="_blank" href={socials[0]}>  <i class="fab fa-instagram"> </i> </a>}
+          {socials && <a target="_blank" href={socials[1]}>  <i class="fab fa-facebook"> </i> </a>}
         </div>
-      </div>
-    <div className="int2">
+      </section>
+    <section className="int2">
     <img src={imgArtist} />
-    </div>
-    </div>}
+    </section>
+    </main>}
     </>
   )
 }
