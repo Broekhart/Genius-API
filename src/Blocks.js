@@ -5,11 +5,6 @@ import {useState} from 'react'
 // options, border: due stringhe che servono per cambiare la classe CSS come si vuole
 const Blocks = ({artist, img, newSection, options, border}) => {
 
-  // ChosenImg e chosenArtist: l'immagine e il nome dell'artista scelto.
-  const [chosenImg, setChosenImg] = useState(null)
-  const [chosenArtist, setChosenArtist] = useState(null)
-  const [accesso, setAccesso] = useState(false)
-
 return(
   <main className={options}>
       <section className={border}>

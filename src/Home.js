@@ -2,7 +2,7 @@
 import Blocks from './Blocks.js'
 // Lyrics: interfaccia delle prime cinque canzoni per popolarità dell'artista scelto
 import Lyrics from './Lyrics.js'
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 // Custom hook che va a fetchare l'URL messo e ritorna l'oggetto ricevuto.
 import useFetch from './useFetch.js'
 
