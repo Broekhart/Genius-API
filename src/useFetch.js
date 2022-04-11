@@ -1,19 +1,11 @@
 import {useState, useEffect} from 'react';
 
-const useFetch = (url) => {
+const useFetch = (url, key) => {
 const [data,setData] = useState(null);
 
 useEffect(()=> {
 
-  const options = {
-method: 'GET',
-headers: {
-  'X-RapidAPI-Host': 'genius.p.rapidapi.com',
-  'X-RapidAPI-Key': 'c6dc26ee51msh6071062bc8d0b39p12e832jsn88748cb729b4'
-}
-};
-
-  fetch(url, options)
+  fetch(url, key)
   .then(res => {
    return res.json()
   })
