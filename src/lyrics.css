@@ -122,5 +122,4 @@ text-overflow: ellipsis;
 }
 .containerImg{
   grid-area: 1 / 3 / 3 / 4;
-  background:black;
 }

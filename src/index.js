@@ -5,6 +5,7 @@ import './research.css'
 import './principal.css'
 import './lyrics.css'
 import './info.css'
+import './blocks.css'
 import App from './App';
 
 ReactDOM.render(

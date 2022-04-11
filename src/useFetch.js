@@ -4,7 +4,6 @@ const useFetch = (url, key) => {
 const [data,setData] = useState(null);
 
 useEffect(()=> {
-
   fetch(url, key)
   .then(res => {
    return res.json()
