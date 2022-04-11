@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Home from './Home.js'
 import Info from './Info.js'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {HashRouter, BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 function App() {
 
@@ -21,6 +21,7 @@ function App() {
 
   return (
    <Router>
+   <HashRouter basename="/">
    <Switch>
    <Route exact path="/">
    <Home colors={background} changeColors={changeColors} />
@@ -29,6 +30,7 @@ function App() {
    <Info colors={background} />
    </Route>
    </Switch>
+    </HashRouter>
    </Router>
   );
 }

@@ -17,7 +17,6 @@ const Home = ({colors, changeColors}) => {
   const [chosenImg, setChosenImg] = useState(null)
   const [chosenArtist, setChosenArtist] = useState(null)
   const [id, setId] = useState(null)
-  const [chosenId, setChosenId] = useState(null)
 
   // Accesso: una variabile che serve per accedere al componente successivo, Principal. Attraverso la funzione newSection viene cambiato il suo stato.
   // DisplayBlock: stessa logica di accesso, serve per mostrare/nascondere il secondo Blocks
@@ -68,7 +67,6 @@ const Home = ({colors, changeColors}) => {
       setAccesso(true)
       setChosenImg(img[i])
       setChosenArtist(artist[i])
-      setChosenId(id[i])
       setSearch("")
       setSocials(["https://instagram.com/" + secondData.response.artist.instagram_name, "https://facebook.com/" + secondData.response.artist.facebook_name])
     if (thirdData) {
@@ -113,7 +111,7 @@ const Home = ({colors, changeColors}) => {
         </div>
       </section>
     <section className="int2">
-    <img src={chosenImg} />
+    <img alt="" src={chosenImg} />
     </section>
     </main>}
     </>
