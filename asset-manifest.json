@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/genius-api/static/css/main.5636cc3e.css",
+    "main.js": "/genius-api/static/js/main.4c09cb96.js",
+    "index.html": "/genius-api/index.html",
+    "main.5636cc3e.css.map": "/genius-api/static/css/main.5636cc3e.css.map",
+    "main.4c09cb96.js.map": "/genius-api/static/js/main.4c09cb96.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5636cc3e.css",
+    "static/js/main.4c09cb96.js"
+  ]
+}
