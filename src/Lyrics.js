@@ -3,33 +3,20 @@ import {Link} from 'react-router-dom'
 
 const Lyrics = ({titleSong, img, artist, id}) => {
 
+  const canzoni = [{titleSong:titleSong[0],img:img[0],artist:artist[0],id:id[0], classLyrics:1}, {titleSong:titleSong[1],img:img[1],artist:artist[1],id:id[1],classLyrics:2},
+  {titleSong:titleSong[2],img:img[2],artist:artist[2],id:id[2],classLyrics:3}, {titleSong:titleSong[3],img:img[3],artist:artist[3],id:id[3],classLyrics:4}, {titleSong:titleSong[4],img:img[4],artist:artist[4],id:id[4],classLyrics:5}]
+
   return (
     <>
    <div className="block2">
-<div className="lyrics1">
-  <Link to={'/Info/'+ id[0]}> {titleSong[0]} </Link>
-  <p> {artist[0]} </p>
-  <div className="containerImg"> <img src={img[0]}/> </div>
-  </div>
-<div className="lyrics2">  <Link to={'/Info/'+ id[1]}> {titleSong[1]} </Link>
-  <p> {artist[1]} </p>
-  <div className="containerImg"> <img src={img[1]}/> </div>
-  </div>
- <div className="lyrics3">
-   <Link to={'/Info/'+ id[2]}> {titleSong[2]} </Link>
-  <p> {artist[2]} </p>
-  <div className="containerImg"> <img src={img[2]}/> </div>
-  </div>
-<div className="lyrics4">
-  <Link to={'/Info/'+ id[3]}> {titleSong[3]} </Link>
-  <p> {artist[3]} </p>
-  <div className="containerImg"> <img src={img[3]}/> </div>
-  </div>
-<div className="lyrics5">
-  <Link to={'/Info/'+ id[4]}> {titleSong[4]} </Link>
-  <p> {artist[4]} </p>
-  <div className="containerImg"> <img src={img[4]}/> </div>
-  </div>
+   {canzoni.map((song) =>
+     <div className={"lyrics" + song.classLyrics} >
+     <Link to={'/info/' + song.id}> {song.titleSong} </Link>
+     <p> {song.artist} </p>
+     <div className="containerImg"> <img src={song.img} /> </div>
+     </div>
+
+   )}
 </div>
 </>
   )

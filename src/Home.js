@@ -8,6 +8,9 @@ import {useState, useEffect} from 'react'
 // Custom hook che va a fetchare l'URL messo e ritorna l'oggetto ricevuto.
 import useFetch from './useFetch.js'
 
+import { createContext } from 'react';
+const UserContext = createContext();
+
 const Home = () => {
 
   // Search: il nome che andrai ad inserire nella barra di ricerca. Artist, id e img: il nome dell'artista. il suo id Genius e l'immagine che vengono prese dall'API.
@@ -38,9 +41,17 @@ const Home = () => {
   // secondData: l'intero oggeto ARTISTS fetchato dall'API
   // thirdData: l'intero oggetto SONGS fetchato dall'API.
 
-  const [data] = useFetch('https://genius.p.rapidapi.com/search?q=' + search)
-  const [secondData] = useFetch('https://genius.p.rapidapi.com/artists/' + id)
-  const [thirdData] = useFetch('https://genius.p.rapidapi.com/artists/' + id + '/songs?sort=popularity')
+  const key = {
+  method: 'GET',
+  headers: {
+  'X-RapidAPI-Host': 'genius.p.rapidapi.com',
+  'X-RapidAPI-Key': 'c6dc26ee51msh6071062bc8d0b39p12e832jsn88748cb729b4'
+}
+};
+
+  const [data] = useFetch('https://genius.p.rapidapi.com/search?q=' + search, key)
+  const [secondData] = useFetch('https://genius.p.rapidapi.com/artists/' + id, key)
+  const [thirdData] = useFetch('https://genius.p.rapidapi.com/artists/' + id + '/songs?sort=popularity', key)
 
 
 // Attivata attraverso il click della lente di ricerca, da alle variabili artist e img un'array di stringhe.
@@ -86,7 +97,7 @@ const Home = () => {
     </div>
       {artist && <Blocks artist={artist} img={img} newSection={newSection} />}
     </main>}
-    {socials && <Principal chosenArtist={chosenArtist} img={img} imgArtist={chosenImg} socials={socials} />}
+    {songImg && <Principal chosenArtist={chosenArtist} img={img} imgArtist={chosenImg} socials={socials} />}
     {songImg && <Lyrics titleSong={titleSong} img={songImg} artist={songArtist} id={musicId}/>}
     </>
   )
