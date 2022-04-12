@@ -57,12 +57,12 @@ const Home = ({colors, changeColors}) => {
   const newSection = (i) => {
     //Promise composta da una prima funzione che da valore a variabili varie. Viene fullfilled se data viene fetchato (diventa quindi true) e prende valore.
       new Promise(function(myResolve) {
+      setAccesso(true)
       fetch('https://genius.p.rapidapi.com/artists/' + id[i], key)
       .then(response => response.json())
       .then(secondData => {
         changeColors()
         setDisplayBlock(false)
-        setAccesso(true)
         setChosenImg(img[i])
         setChosenArtist(artist[i])
         setSearch("")
