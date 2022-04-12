@@ -44,10 +44,8 @@ const Home = ({colors, changeColors}) => {
 
 // data: l'intero oggetto SEARCH fetchato dall'API, per il fetch ho utilizzato il custom Hook useFetch.
 // secondData: l'intero oggeto ARTISTS fetchato dall'API
-// thirdData: l'intero oggetto SONGS fetchato dall'API.
   const [data] = useFetch('https://genius.p.rapidapi.com/search?q=' + search, key)
   const [secondData] = useFetch('https://genius.p.rapidapi.com/artists/' + id, key)
-  const [thirdData] = useFetch('https://genius.p.rapidapi.com/artists/' + id + '/songs?sort=popularity', key)
 
 
 // Attivata attraverso il click della lente di ricerca, da alle variabili artist e img un'array di stringhe e cambia lo stato del secondo Blocks.
@@ -69,16 +67,20 @@ const Home = ({colors, changeColors}) => {
       setChosenArtist(artist[i])
       setSearch("")
       setSocials(["https://instagram.com/" + secondData.response.artist.instagram_name, "https://facebook.com/" + secondData.response.artist.facebook_name])
-    if (thirdData) {
+    if (secondData) {
       myResolve("OK");
     }})
-    //Funzione che parte una volta risolta la Promise, da valore a tutte le variabili che servono per il componente Lyrics
+    //Funzione che parte una volta risolta la Promise, da valore a tutte le variabili che servono per il componente Lyric. Per fare ciò viene richiamata una nuova fetch con l'id dell'artista scelto
     .then(() => {
-    setTitleSong([thirdData.response.songs[0].title, thirdData.response.songs[1].title, thirdData.response.songs[2].title, thirdData.response.songs[3].title, thirdData.response.songs[4].title])
-    setMusicId([thirdData.response.songs[0].id, thirdData.response.songs[1].id, thirdData.response.songs[2].id, thirdData.response.songs[3].id, thirdData.response.songs[4].id])
-    setSongImg([thirdData.response.songs[0].song_art_image_thumbnail_url, thirdData.response.songs[1].song_art_image_thumbnail_url, thirdData.response.songs[2].song_art_image_thumbnail_url, thirdData.response.songs[3].song_art_image_thumbnail_url,
-    thirdData.response.songs[4].song_art_image_thumbnail_url])
-    setSongArtist([thirdData.response.songs[0].artist_names, thirdData.response.songs[1].artist_names, thirdData.response.songs[2].artist_names, thirdData.response.songs[3].artist_names, thirdData.response.songs[4].artist_names])
+    fetch('https://genius.p.rapidapi.com/artists/' + id[i] + '/songs?sort=popularity', key)
+    .then(response => response.json())
+    .then(thirdData => {
+      setTitleSong([thirdData.response.songs[0].title, thirdData.response.songs[1].title, thirdData.response.songs[2].title, thirdData.response.songs[3].title, thirdData.response.songs[4].title])
+      setMusicId([thirdData.response.songs[0].id, thirdData.response.songs[1].id, thirdData.response.songs[2].id, thirdData.response.songs[3].id, thirdData.response.songs[4].id])
+      setSongImg([thirdData.response.songs[0].song_art_image_thumbnail_url, thirdData.response.songs[1].song_art_image_thumbnail_url, thirdData.response.songs[2].song_art_image_thumbnail_url, thirdData.response.songs[3].song_art_image_thumbnail_url,
+      thirdData.response.songs[4].song_art_image_thumbnail_url])
+      setSongArtist([thirdData.response.songs[0].artist_names, thirdData.response.songs[1].artist_names, thirdData.response.songs[2].artist_names, thirdData.response.songs[3].artist_names, thirdData.response.songs[4].artist_names])
+    })
   })
 }
 
@@ -95,6 +97,7 @@ const Home = ({colors, changeColors}) => {
       {artist && <Blocks artist={artist} img={img} newSection={newSection} options="options1" border="border1"/>}
     </main>}
     <>
+    {!songImg && accesso && <div class="loading"> </div>}
     {songImg && <main className="block1">
     <section className="int1">
     {accesso && <div>
@@ -106,12 +109,12 @@ const Home = ({colors, changeColors}) => {
   </div>}
         <h1> {chosenArtist} </h1>
         <div className="socials">
-          {socials && <a target="_blank" href={socials[0]}>  <i class="fab fa-instagram"> </i> </a>}
-          {socials && <a target="_blank" href={socials[1]}>  <i class="fab fa-facebook"> </i> </a>}
+          {socials && <a target="_blank" href={socials[0]}>  <i className="fab fa-instagram"> </i> </a>}
+          {socials && <a target="_blank" href={socials[1]}>  <i className="fab fa-facebook"> </i> </a>}
         </div>
       </section>
     <section className="int2">
-    <img alt="" src={chosenImg} />
+    <img src={chosenImg} />
     </section>
     </main>}
     </>

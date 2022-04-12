@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 
 // TitleSong, img, artist e id: rispettivamente i titoli delle canzoni, le immagini, il nome degli artisti e l'id Genius del pezzo dei primi cinque risultati per popolarità
@@ -14,7 +15,7 @@ const Lyrics = ({titleSong, img, artist, id}) => {
      <div className={"lyrics" + song.classLyrics} >
      <Link to={'/info/' + song.id}> {song.titleSong} </Link>
      <p> {song.artist} </p>
-     <div className="containerImg"> <img alt="" src={song.img} /> </div>
+     <div className="containerImg"> <img src={song.img} /> </div>
      </div>
    )}
 </div>

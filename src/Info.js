@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
+import useFetch from './useFetch.js'
+
  const Info = ({colors}) => {
 
 // Id prende valore dal numero della barra di ricerca: se l'URL è /info/1, id = 1. Il valore della barra di ricerca viene scelto dall'utente cliccando sulla canzone di Lyrics.
@@ -58,7 +60,7 @@ useEffect(() => {
    return (
      <>
      {img && <header className="block3" style={{background:colors}}>
-<div className="info1"> <img alt="" src={img} /> </div>
+<div className="info1"> <img src={img} /> </div>
 <div className="info2">
   <h1> {title} </h1>
   <h1> {artist} </h1>
