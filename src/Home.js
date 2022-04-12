@@ -43,10 +43,7 @@ const Home = ({colors, changeColors}) => {
 };
 
 // data: l'intero oggetto SEARCH fetchato dall'API, per il fetch ho utilizzato il custom Hook useFetch.
-// secondData: l'intero oggeto ARTISTS fetchato dall'API
   const [data] = useFetch('https://genius.p.rapidapi.com/search?q=' + search, key)
-  const [secondData] = useFetch('https://genius.p.rapidapi.com/artists/' + id, key)
-
 
 // Attivata attraverso il click della lente di ricerca, da alle variabili artist e img un'array di stringhe e cambia lo stato del secondo Blocks.
   const researchArtist = () => {
@@ -58,16 +55,20 @@ const Home = ({colors, changeColors}) => {
 
   // Attivata attraverso il click dell'immagine o del testo usciti fuori dalla ricerca, da valore alle variabili chosenImg e chosenArtist
   const newSection = (i) => {
-    //Promise composta da una prima funzione che da valore a variabili varie. Viene fullfilled se thirdData viene fetchato (diventa quindi true) e prende valore.
+    //Promise composta da una prima funzione che da valore a variabili varie. Viene fullfilled se data viene fetchato (diventa quindi true) e prende valore.
       new Promise(function(myResolve) {
-      changeColors()
-      setDisplayBlock(false)
-      setAccesso(true)
-      setChosenImg(img[i])
-      setChosenArtist(artist[i])
-      setSearch("")
-      setSocials(["https://instagram.com/" + secondData.response.artist.instagram_name, "https://facebook.com/" + secondData.response.artist.facebook_name])
-    if (secondData) {
+      fetch('https://genius.p.rapidapi.com/artists/' + id[i], key)
+      .then(response => response.json())
+      .then(secondData => {
+        changeColors()
+        setDisplayBlock(false)
+        setAccesso(true)
+        setChosenImg(img[i])
+        setChosenArtist(artist[i])
+        setSearch("")
+        setSocials(["https://instagram.com/" + secondData.response.artist.instagram_name, "https://facebook.com/" + secondData.response.artist.facebook_name])
+      })
+    if (data) {
       myResolve("OK");
     }})
     //Funzione che parte una volta risolta la Promise, da valore a tutte le variabili che servono per il componente Lyric. Per fare ciò viene richiamata una nuova fetch con l'id dell'artista scelto
