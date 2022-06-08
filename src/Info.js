@@ -21,7 +21,7 @@ import {useParams, useHistory} from 'react-router-dom';
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com',
-		'X-RapidAPI-Key': 'c6dc26ee51msh6071062bc8d0b39p12e832jsn88748cb729b4'
+		'X-RapidAPI-Key': process.env.REACT_APP_API_KEY
 	}
 };
 
